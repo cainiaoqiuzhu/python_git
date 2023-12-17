@@ -11,7 +11,7 @@ from flask import jsonify, request
 from etc import config
 from libs.log import lg
 
-DELAY_DAYS = 7
+DELAY_DAYS = 21
 sensitivity_map = {
     'weight_total': 2,
     'weight_top10': 2,
