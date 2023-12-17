@@ -105,3 +105,27 @@ def update_ims():
         return {'code': 200, 'success': True, 'message': '执行成功', 'data': []}
 
     return {'func': inner_task}
+
+
+@bpt.route('/update/factor', methods=['GET', 'POST'])
+@task_response
+def update_factor():
+    ''' 更新基础指标与市场信息 '''
+    args = get_args(request.json, skip_unit=True)
+    if isinstance(args, tuple):
+        success, message = args
+        return {'code': 200, 'success': success, 'message': message, 'data': []}
+    factor_code = request.json.get('factor_code')
+
+    factor_method = FACTOR_MAP.get(factor_code)
+    if not factor_method:
+        return {'code': 200, 'success': False, 'message': '错误的factor_code', 'data': []}
+
+    unit_id_list = [unit_info.l_asset_id for _, unit_info in unit.get_unit_list(USER_CODE).iterrows()]
+
+    def inner_task():
+
+        factor_method(unit_id_list, args['begin_date'], args['end_date'])
+        return {'code': 200, 'success': True, 'message': '执行成功', 'data': []}
+
+    return {'func': inner_task}
