@@ -1,0 +1,8 @@
+lulu:
+  apollo:
+    meta: http://apollo-config1.dev.efunds.com.cn:8080
+  app:
+    app_id: PM
+    namespace: ['ims-calculatecenter-equity-service','IS0042-DB-TDMySQL-ims_pm_monitor','IS0038-INFODB-NODE1','DB-ORACLE-TYREAL-NODE1','DB-ORACLE-TYREAL-IMS','IS0038-INFODB-inforeader','IS0038-INFODB-inforo4ims','IS0038-TYREAL-ims']
+    cluster: dev
+    secret: 085feb8e3bbb4a28a43dff567995e0a5
