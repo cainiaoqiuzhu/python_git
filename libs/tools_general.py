@@ -20,7 +20,7 @@ def get_stock_area(stk_code):
     stk_code: 股票万得代码
     """
     market = stk_code.split('.')[-1]
-    area = ('A' if market in ['SZ', 'SH', 'BJ'] else 'US' if market in ['O',
+    area = ('A' if market in ['SZ', 'SH', 'BJ', 'NB'] else 'US' if market in ['O',
                                                                         'N'] else market)
     return area
 
