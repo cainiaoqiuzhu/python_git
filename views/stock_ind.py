@@ -99,31 +99,11 @@ def update_ims():
     def inner_task():
 
         for index, unit_id in enumerate(unit_id_list):
-        lg.info('update %s %s', index, unit_id)
-        factor_ims.update_unit_ims(unit_id, args['begin_date'], args['end_date'])
-        factor_ims.update_unit_stock_ims(unit_id, args['begin_date'], args['end_date'])
+            lg.info('update %s %s', index, unit_id)
+            factor_ims.update_unit_ims(unit_id, args['begin_date'], args['end_date'])
+            factor_ims.update_unit_stock_ims(unit_id, args['begin_date'], args['end_date'])
         return {'code': 200, 'success': True, 'message': '执行成功', 'data': []}
 
     return {'func': inner_task}
 
 
-@bpt.route('/update/ims', methods=['GET', 'POST'])
-@task_response
-def update_ims():
-    ''' 更新IMS持仓信息 '''
-    args = get_args(request.json, skip_unit=True)
-    if isinstance(args, tuple):
-        success, message = args
-        return {'code': 200, 'success': success, 'message': message, 'data': []}
-
-    unit_id_list = [unit_info.l_asset_id for _, unit_info in unit.get_unit_list(USER_CODE).iterrows()]
-
-    def inner_task():
-
-        for index, unit_id in enumerate(unit_id_list):
-        lg.info('update %s %s', index, unit_id)
-        factor_ims.update_unit_ims(unit_id, args['begin_date'], args['end_date'])
-        factor_ims.update_unit_stock_ims(unit_id, args['begin_date'], args['end_date'])
-        return {'code': 200, 'success': True, 'message': '执行成功', 'data': []}
-
-    return {'func': inner_task}
