@@ -6,7 +6,7 @@ CREATE TABLE users (
     registration_date DATE
 );
 
-CREATE TABLE passager (
+CREATE TABLE passagers (
     user_id INT PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
